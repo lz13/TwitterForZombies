@@ -6,7 +6,15 @@
   <% @zombies.each do |zombie| %>
     <tr>
       <td><%= render zombie %></td>
+      <td><strong>Rotting: </strong><%= zombie.rotting? %> </td>
+      <br>
+
+      <br>
       <td><Strong>Rank: </strong><%= zombie.roles.find_by(title: @title).title %></td>
+      <br>
+
+      <br>
+      <td><strong>Brain Status:</strong> <%= zombie.brain.status %></td>
       <br>
 
       <br>
