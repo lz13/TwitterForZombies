@@ -4,6 +4,7 @@ class ZombiesController < ApplicationController
   # GET /zombies or /zombies.json
   def index
     @zombies = Zombie.includes(:brain).all
+    @title = "Captain", "Scout", "Soldier", "Brain Taster"
   end
 
   # GET /zombies/1 or /zombies/1.json
