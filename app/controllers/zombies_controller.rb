@@ -3,7 +3,7 @@ class ZombiesController < ApplicationController
 
   # GET /zombies or /zombies.json
   def index
-    @zombies = Zombie.all
+    @zombies = Zombie.includes(:brain).all
   end
 
   # GET /zombies/1 or /zombies/1.json

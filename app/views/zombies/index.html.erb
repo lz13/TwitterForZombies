@@ -4,7 +4,11 @@
 
 <div id="zombies">
   <% @zombies.each do |zombie| %>
-    <%= render zombie %>
+    <tr>
+      <td><%= render zombie %></td>
+      <td><strong>Brain Flavor:</strong> <%= zombie.brain.flavor %></td>
+    </tr>
+
     <p>
       <%= link_to "Show this zombie", zombie %>
     </p>
