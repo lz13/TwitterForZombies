@@ -6,6 +6,8 @@ class Zombie < ApplicationRecord
 
   before_save :make_rotting
 
+  has_one :brain, dependent: :destroy
+
   def make_rotting
     self.rotting = true if age > 20
   end
