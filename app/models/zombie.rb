@@ -15,6 +15,10 @@ class Zombie < ApplicationRecord
     self.rotting = true if age > 20
   end
 
+  def as_json(options = nil)
+    super(options || { include: :brain, except: [:created_at, :updated_at, :id] })
+  end
+
   private
 
   def decomp_change_notification
