@@ -1,17 +1,7 @@
-<div id="<%= dom_id zombie %>">
-  <p>
-    <strong>Name:</strong>
-    <%= zombie.name %>
-  </p>
-
-  <p>
-    <strong>Bio:</strong>
-    <%= zombie.bio %>
-  </p>
-
-  <p>
-    <strong>Age:</strong>
-    <%= zombie.age %>
-  </p>
-
-</div>
+<%= div_for zombie do %>
+  <%= link_to "Zombie #{zombie.name}", zombie %>
+  <div class="actions">
+    <%= link_to 'edit', edit_zombiepath(zombie) %>
+    <%= link_to 'delete', zombie, method: :delete, remote: true %>
+  </div>
+<% end %>

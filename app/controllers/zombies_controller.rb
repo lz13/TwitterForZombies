@@ -41,6 +41,7 @@ class ZombiesController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @zombie.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
