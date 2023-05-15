@@ -1,4 +1,5 @@
 class Zombie < ApplicationRecord
+  after_save :decomp_change_notification, if: :decomp_changed?
 
   scope :rotting, -> { where(rotting: true) }
   scope :fresh, -> { where("age < 20") }
@@ -12,5 +13,11 @@ class Zombie < ApplicationRecord
 
   def make_rotting
     self.rotting = true if age > 20
+  end
+
+  private
+
+  def decomp_change_notification
+    ZombieMailer.decomp_change(self).deliver
   end
 end
