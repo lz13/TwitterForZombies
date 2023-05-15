@@ -1,13 +1,15 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :get_zombie
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = @zombie.tweets
   end
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    @tweet = @zombie.tweets.find(params[:id])
   end
 
   # GET /tweets/new
@@ -21,12 +23,12 @@ class TweetsController < ApplicationController
 
   # POST /tweets or /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = @zombie.tweets.new(tweet_params)
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to tweet_url(@tweet), notice: "Tweet was successfully created." }
-        format.json { render :show, status: :created, location: @tweet }
+        format.html { redirect_to tweet_url[@zombie, @tweet], notice: "Tweet was successfully created." }
+        format.json { render :show, status: :created, location: [@zombie, @tweet] }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
@@ -66,5 +68,9 @@ class TweetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tweet_params
       params.fetch(:tweet, {})
+    end
+
+    def get_zombie
+      @zombie = Zombie.find(params[:zombie_id])
     end
 end
