@@ -64,6 +64,7 @@ class ZombiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to zombies_url, notice: "Zombie was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
